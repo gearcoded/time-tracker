@@ -1,0 +1,62 @@
+<html>
+<body>
+<style>
+body{
+  background: wheat;
+}
+.input{
+  display:inline-block;
+}
+.result{
+  display:inline-block
+  }
+</style>
+<h1>Calculate time strings here:</h1>
+
+
+<table>
+<tr>
+<td>
+<div class='input'>
+Input hours:
+<br>
+<input class='dates_input' id='dates_input' value="12:47-16:34" oninput=parse_dates(this.value)>
+<button onclick="this.previousElementSibling.value='';parse_dates()">X</button>
+
+<input type=button value=">" onclick="calculate_dates()">
+<br>
+Parsed data: <div class='parsed_value'>12:47-16:34</div>
+<br>
+One big string:
+<br>
+<input class='date_string' id='date_string' value="15:15 - 21 :14,08:11-11:52">
+<button onclick="this.previousElementSibling.value='';">X</button>
+
+<input type=button value=">" onclick="parse_date_string()">
+
+</div>
+</td>
+<td class='result'>
+<div class='stack'>
+Result: 
+<br>
+<input class='calculated_input' id='calculated_input' value="" >
+<button onclick="javascript:calculated_input.value=''">X</button>
+<input type=button value="V" onclick="add_more_dates()">
+
+<br>
+</div>
+<br>
+
+Total: 
+<br>
+<input class='total' id='total' value="" >
+<input type=button value="<" onclick="calculate_total()">
+<br>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
