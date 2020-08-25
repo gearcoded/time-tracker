@@ -1,4 +1,4 @@
-const version = "1.2";
+const version = "1.3";
 document.querySelector(".version").innerHTML = 'v' + version;
 
 let date_string = null;
@@ -59,33 +59,44 @@ function parse_dates(value, bulk){
   
   if (bulk) return;
   
-  document.querySelector(".parsed_value").innerHTML = `'${left_part}-${right_part}'`;
+  let parsed_value = `'${left_part}-${right_part}'`;
+  if (left_part === right_part) parsed_value = left_part;
+
+  document.querySelector(".parsed_value").innerHTML = parsed_value;
 }
 
 function calculate_dates(){
   let final_value = "00:00"
   if (left_part && right_part) {
+
+    // already calculated value, not a time interval
+    if (left_part === right_part) {
+      final_value = left_part;
+    }
+    // time interval
+    else {
     
-    let date1 = left_part.split(':')
-    let date2 = right_part.split(':')
-    
-    let hours = date2[0]-date1[0];
-    
-    let minutes = date2[1]-date1[1];
-    
-    if (minutes < 0){
-      minutes += 60;
-      hours -= 1;
+      let date1 = left_part.split(':')
+      let date2 = right_part.split(':')
+      
+      let hours = date2[0]-date1[0];
+      
+      let minutes = date2[1]-date1[1];
+      
+      if (minutes < 0){
+        minutes += 60;
+        hours -= 1;
+      }
+      if (minutes < 10) minutes = "0" + minutes;
+      
+      if (hours < 0){
+        hours += 24;
+      }
+
+      final_value = `${hours}:${minutes}`;
     }
 
-    if (hours < 0){
-      hours += 24;
-    }
-    
-    final_value = `${hours}:${minutes}`;
   }
-  
-    
   
   document.querySelector(".calculated_input").value = final_value;
   
