@@ -74,6 +74,10 @@ function calculate_dates(){
       minutes += 60;
       hours -= 1;
     }
+
+    if (hours < 0){
+      hours += 24;
+    }
     
     final_value = `${hours}:${minutes}`;
   }
