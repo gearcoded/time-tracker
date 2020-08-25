@@ -24,6 +24,8 @@ function calculate_total(){
   
   total_hours += parseInt(total_minutes / 60);
   total_minutes = total_minutes % 60;
+
+  if (total_minutes < 10) total_minutes = "0" + total_minutes;
   
   let total_value = `${total_hours}:${total_minutes}`;
   
