@@ -1,4 +1,4 @@
-const version = "1.4";
+const version = "1.5";
 document.querySelector(".version").innerHTML = 'v' + version;
 
 let date_string = null;
@@ -36,6 +36,8 @@ function calculate_total(){
 }
 
 function parse_date_string(){
+  var backup_value = document.querySelector(".calculated_input").value;
+
   let value = document.querySelector(".date_string").value
   
   let dates = value.split(',').filter(v => v);
@@ -46,7 +48,9 @@ function parse_date_string(){
     add_more_dates()
   }
   parse_dates();
-  calculate_dates()
+  calculate_dates();
+
+  document.querySelector(".calculated_input").value = backup_value;
 
   
 }
